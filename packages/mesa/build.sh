@@ -20,6 +20,7 @@ TERMUX_PKG_REPLACES="libmesa, osmesa"
 # FIXME: Set `shared-llvm` to disabled if possible
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 --cmake-prefix-path $TERMUX_PREFIX
+-Db_ndebug=true
 -Dcpp_rtti=false
 -Dgbm=enabled
 -Dopengl=true
@@ -36,6 +37,7 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 -Dgallium-extra-hud=true
 -Dgallium-xa=disabled
 -Dglvnd=enabled
+-Dmicrosoft-clc=disabled
 -Dxmlconfig=disabled
 "
 
