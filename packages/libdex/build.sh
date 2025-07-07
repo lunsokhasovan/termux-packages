@@ -8,3 +8,8 @@ TERMUX_PKG_SHA256=ae58f47564aab94593e102027c78befc14cf976b5cd3a09926d5e72b7c484e
 TERMUX_PKG_DEPENDS="glib, gobject-introspection, libucontext"
 TERMUX_PKG_BUILD_DEPENDS="g-ir-scanner, libsoup3, valac"
 TERMUX_PKG_AUTO_UPDATE=true
+
+termux_step_pre_configure() {
+	termux_setup_gir
+	termux_setup_glib_cross_pkg_config_wrapper
+}
