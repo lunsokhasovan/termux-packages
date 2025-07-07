@@ -1,0 +1,47 @@
+It might be not working that made for working on termux,
+cuz ucontext.h doesn't have these.
+If you can modifly it.
+
+--- a/src/dex-fiber-context-private.h	2025-07-07 05:49:15.350999095 +0700
++++ b/src/dex-fiber-context-private.h	2025-07-07 18:21:14.005478938 +0700
+@@ -105,7 +105,7 @@
+ #endif
+ 
+   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+-  makecontext (ucontext,
++  libucontext_makecontext (ucontext,
+                G_CALLBACK (dex_fiber_context_start),
+                2, start_lo, start_hi);
+   G_GNUC_END_IGNORE_DEPRECATIONS
+@@ -128,7 +128,7 @@
+   memset (ucontext, 0, sizeof *ucontext);
+ 
+   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+-  getcontext (ucontext);
++  libucontext_getcontext (ucontext);
+   G_GNUC_END_IGNORE_DEPRECATIONS
+ 
+   /* If stack is NULL, then this is a context used to save state
+@@ -166,9 +166,9 @@
+ 
+   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+ #if ALIGN_OF_UCONTEXT > GLIB_SIZEOF_VOID_P
+-  r = swapcontext (*old_context, *new_context);
++  r = libucontext_swapcontext (*old_context, *new_context);
+ #else
+-  r = swapcontext (old_context, new_context);
++  r = libucontext_swapcontext (old_context, new_context);
+ #endif
+   G_GNUC_END_IGNORE_DEPRECATIONS
+ 
+--- a/src/dex-ucontext-private.h	2025-07-07 05:49:15.366999095 +0700
++++ b/src/dex-ucontext-private.h	2025-07-07 18:26:53.037478696 +0700
+@@ -58,7 +58,7 @@
+ #endif
+ 
+ #if USE_UCONTEXT
+-# include <ucontext.h>
++# include <libucontext/libucontext.h>
+ #endif
+ 
+ #if defined(__FreeBSD__) && __FreeBSD__ < 5
