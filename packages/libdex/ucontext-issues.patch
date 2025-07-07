@@ -2,6 +2,7 @@ It might be not working that made for working on termux,
 cuz ucontext.h doesn't have these.
 If you can modifly it.
 
+diff --git a/src/dex-fiber-context-private.h b/src/dex-fiber-context-private.h
 --- a/src/dex-fiber-context-private.h	2025-07-07 05:49:15.350999095 +0700
 +++ b/src/dex-fiber-context-private.h	2025-07-07 18:21:14.005478938 +0700
 @@ -105,7 +105,7 @@
@@ -34,6 +35,7 @@ If you can modifly it.
  #endif
    G_GNUC_END_IGNORE_DEPRECATIONS
  
+diff --git a/src/dex-ucontext-private.h b/src/dex-ucontext-private.h
 --- a/src/dex-ucontext-private.h	2025-07-07 05:49:15.366999095 +0700
 +++ b/src/dex-ucontext-private.h	2025-07-07 18:26:53.037478696 +0700
 @@ -58,7 +58,7 @@
