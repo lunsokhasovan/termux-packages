@@ -17,5 +17,4 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 
 termux_step_make() {
 	sed -i "s|-isystem/data/data|-isystem /data/data|g" build.ninja
-	termux-setup-ninja
 }
