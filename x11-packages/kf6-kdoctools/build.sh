@@ -15,7 +15,7 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS="
 -DKDE_INSTALL_QTPLUGINDIR=lib/qt6/plugins
 "
 
-termux_step_configure() {
+termux_step_make() {
 	sed -i "s|-isystem/data/data|-isystem /data/data|g" build.ninja
 	termux-setup-ninja
 }
