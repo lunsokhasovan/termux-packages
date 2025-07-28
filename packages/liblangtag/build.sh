@@ -9,6 +9,7 @@ TERMUX_PKG_DEPENDS="gobject-introspection, libxml2"
 
 termux_step_pre_configure() {
 	export ac_cv_va_copy=C99
+	termux_setup_gir
 }
 
 termux_step_post_configure() {
