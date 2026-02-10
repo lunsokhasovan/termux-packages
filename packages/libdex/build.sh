@@ -5,8 +5,8 @@ TERMUX_PKG_MAINTAINER="@termux"
 TERMUX_PKG_VERSION="1.0.0"
 TERMUX_PKG_SRCURL=https://download.gnome.org/sources/libdex/${TERMUX_PKG_VERSION%.*}/libdex-${TERMUX_PKG_VERSION}.tar.xz
 TERMUX_PKG_SHA256=7b8f5c5db3796e14e12e10422e2356766ba830b92815fee70bbc867b5b207f5d
-TERMUX_PKG_DEPENDS="glib, gobject-introspection, libucontext"
-TERMUX_PKG_BUILD_DEPENDS="g-ir-scanner"
+TERMUX_PKG_DEPENDS="glib, gobject-introspection, libsoup3, libucontext"
+TERMUX_PKG_BUILD_DEPENDS="cmake, g-ir-scanner"
 TERMUX_PKG_AUTO_UPDATE=true
 
 termux_step_pre_configure() {
