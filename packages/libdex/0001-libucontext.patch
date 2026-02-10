@@ -1,0 +1,47 @@
+diff --git a/src/dex-fiber-context-private.h b/src/dex-fiber-context-private.h
+index 71d5842..4cdd75c 100644
+--- a/src/dex-fiber-context-private.h
++++ b/src/dex-fiber-context-private.h
+@@ -105,7 +105,7 @@ _dex_fiber_context_makecontext (ucontext_t           *ucontext,
+ #endif
+ 
+   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+-  makecontext (ucontext,
++  libucontext_makecontext (ucontext,
+                G_CALLBACK (dex_fiber_context_start),
+                2, start_lo, start_hi);
+   G_GNUC_END_IGNORE_DEPRECATIONS
+@@ -128,7 +128,7 @@ dex_fiber_context_init (DexFiberContext      *context,
+   memset (ucontext, 0, sizeof *ucontext);
+ 
+   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+-  getcontext (ucontext);
++  libucontext_getcontext (ucontext);
+   G_GNUC_END_IGNORE_DEPRECATIONS
+ 
+   /* If stack is NULL, then this is a context used to save state
+@@ -166,9 +166,9 @@ dex_fiber_context_switch (DexFiberContext *old_context,
+ 
+   G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+ #if ALIGN_OF_UCONTEXT > GLIB_SIZEOF_VOID_P
+-  r = swapcontext (*old_context, *new_context);
++  r = libucontext_swapcontext (*old_context, *new_context);
+ #else
+-  r = swapcontext (old_context, new_context);
++  r = libucontext_swapcontext (old_context, new_context);
+ #endif
+   G_GNUC_END_IGNORE_DEPRECATIONS
+ 
+diff --git a/src/dex-ucontext-private.h b/src/dex-ucontext-private.h
+index 247fe48..06cffa7 100644
+--- a/src/dex-ucontext-private.h
++++ b/src/dex-ucontext-private.h
+@@ -58,7 +58,7 @@
+ #endif
+ 
+ #if USE_UCONTEXT
+-# include <ucontext.h>
++# include <libucontext/libucontext.h>
+ #endif
+ 
+ #if defined(__FreeBSD__) && __FreeBSD__ < 5
